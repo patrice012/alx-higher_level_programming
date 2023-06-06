@@ -1,6 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD
-python3 $PYFILE
-=======
 python3 "$PYFILE"
->>>>>>> a4b1941 (add task 0)
