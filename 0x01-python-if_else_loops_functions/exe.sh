@@ -33,6 +33,7 @@ else
   # Loop through each .c file and run the betty style check
   for file in "${files[@]}"; do
     betty "$file"
+    betty-doc.pl "$file"
   done
 fi
 
@@ -41,9 +42,11 @@ if [ ${#py_file[@]} -eq 0 ]; then
 	echo "no .py file found"
 else
   for file in "${files[@]}"; do
-    #check python code style
-    pycodestyle --first "$file"
     #make all .py file executable
     chmod +x "$file"
   done
 fi
+
+
+#check python code style
+pycodestyle --first *.py
