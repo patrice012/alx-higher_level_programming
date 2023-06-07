@@ -31,9 +31,9 @@ if [ ${#c_file[@]} -eq 0 ]; then
   echo "no .c file found"
 else
   # Loop through each .c file and run the betty style check
-  for file in "${files[@]}"; do
+  for file in "${c_file[@]}"; do
     betty "$file"
-    betty-doc.pl "$file"
+    #betty-doc.pl "$file"
   done
 fi
 
