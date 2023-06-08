@@ -1,5 +1,4 @@
 #!/bin/bash
-chmod +x *.py
 
 
 # Get the current working directory
