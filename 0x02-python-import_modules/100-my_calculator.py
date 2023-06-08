@@ -26,10 +26,10 @@ if __name__ == "__main__":
                 exit(0)
             case "*":
                 print("{:d} {} {:d} = {}".format(a, op, b, mul(a, b)))
-                exit(1)
+                exit(0)
             case "/":
                 print("{:d} {} {:d} = {}".format(a, op, b, div(a, b)))
-                exit(1)
+                exit(0)
             case _:
                 print("Unknown operator. Available operators: +, -, * and /")
                 exit(1)
