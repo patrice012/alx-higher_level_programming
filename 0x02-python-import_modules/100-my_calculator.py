@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     if arg_count != 3:
         print("Usage: {} <a> <operator> <b>".format(sys.argv[0]))
-        exit(1)
+        sys.exit(1)
     else:
         op = arg_array[1]
         a = int(arg_array[0])
@@ -20,16 +20,16 @@ if __name__ == "__main__":
         match op:
             case "+":
                 print("{:d} {} {:d} = {}".format(a, op, b, add(a, b)))
-                exit(0)
+                sys.exit(0)
             case "-":
                 print("{:d} {} {:d} = {}".format(a, op, b, sub(a, b)))
-                exit(0)
+                sys.exit(0)
             case "*":
                 print("{:d} {} {:d} = {}".format(a, op, b, mul(a, b)))
-                exit(0)
+                sys.exit(0)
             case "/":
                 print("{:d} {} {:d} = {}".format(a, op, b, div(a, b)))
-                exit(0)
+                sys.exit(0)
             case _:
                 print("Unknown operator. Available operators: +, -, * and /")
-                exit(1)
+                sys.exit(1)
