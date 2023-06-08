@@ -40,11 +40,6 @@ fi
 
 if [ ${#py_file[@]} -eq 0 ]; then
 	echo "no .py file found"
-else
-  for file in "${files[@]}"; do
-    #make all .py file executable
-    chmod +x "$file"
-  done
 fi
 
 
