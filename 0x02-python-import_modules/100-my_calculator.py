@@ -1,35 +1,48 @@
+
+
+
 #!/usr/bin/python3
 
+from calculator_1 import add, mul, sub, div
+
+from sys import argv, exit
+
 if __name__ == "__main__":
-    """Build my own calculator! """
 
-    import sys
-    from calculator_1 import add, sub, mul, div
+    if len(argv) != 4:
 
-    arg_array = sys.argv[1:]
-    arg_count = len(arg_array)
+        print("Usage: {} <a> <operator> <b>".format(argv[0]))
 
-    if arg_count != 3:
-        print("Usage: {} <a> <operator> <b>".format(sys.argv[0]))
-        sys.exit(1)
+        exit(1)
+
+    elif argv[2] not in ["+", "-", "*", "/"]:
+
+        print("Unknown operator. Available operators: +, -, * and /")
+
+        exit(1)
+
     else:
-        op = arg_array[1]
-        a = int(arg_array[0])
-        b = int(arg_array[2])
 
-        match op:
-            case "+":
-                print("{:d} {} {:d} = {}".format(a, op, b, add(a, b)))
-                sys.exit(0)
-            case "-":
-                print("{:d} {} {:d} = {}".format(a, op, b, sub(a, b)))
-                sys.exit(0)
-            case "*":
-                print("{:d} {} {:d} = {}".format(a, op, b, mul(a, b)))
-                sys.exit(0)
-            case "/":
-                print("{:d} {} {:d} = {}".format(a, op, b, div(a, b)))
-                sys.exit(0)
-            case _:
-                print("Unknown operator. Available operators: +, -, * and /")
-                sys.exit(1)
+        a = int(argv[1])
+
+        b = int(argv[3])
+
+        r = 0
+
+        if argv[2] == "+":
+
+            r = add(a, b)
+
+        elif argv[2] == "-":
+
+            r = sub(a, b)
+
+        elif argv[2] == "*":
+
+            r = mul(a, b)
+
+        elif argv[2] == "/":
+
+            r = div(a, b)
+
+        print("{} {} {} = {}".format(a, argv[2], b, r))
