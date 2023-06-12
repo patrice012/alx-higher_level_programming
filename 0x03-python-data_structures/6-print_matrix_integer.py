@@ -9,3 +9,4 @@ def print_matrix_integer(matrix=[[]]):
             else:
                 print('{:d}'.format(cell))
             count += 1
+    print( )
