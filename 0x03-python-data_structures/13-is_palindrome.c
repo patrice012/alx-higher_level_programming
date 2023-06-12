@@ -31,7 +31,7 @@ int is_palindrome(listint_t **head)
 	}
 	array[i] = NULL;
 	i -= 1;
-	for (j = 0; j < (i / 2) && i >= 0; j++)
+	for (j = 0; array[j] && i >= 0; j++)
 	{
 		if (*array[j] != *array[i])
 			flag = 0;
