@@ -1,72 +1,43 @@
 #include "lists.h"
-
-listint_t *reverse_listint(listint_t **head);
-int is_palindrome(listint_t **head);
+#include <stdio.h>
 
 /**
- * reverse_listint - Reverses a singly-linked listint_t list.
- * @head: A pointer to the starting node of the list to reverse.
- *
- * Return: A pointer to the head of the reversed list.
- */
-listint_t *reverse_listint(listint_t **head)
-{
-	listint_t *node = *head, *next, *prev = NULL;
+  * is_palindrome - check if list is palindrome
+  * @head: list head
+  * Return: 0 if it is not a palindrome, 1 if it is a palindrome
+  */
 
-	while (node)
-	{
-		next = node->next;
-		node->next = prev;
-		prev = node;
-		node = next;
-	}
-
-	*head = prev;
-	return (*head);
-}
-
-/**
- * is_palindrome - Checks if a singly linked list is a palindrome.
- * @head: A pointer to the head of the linked list.
- *
- * Return: If the linked list is not a palindrome - 0.
- *         If the linked list is a palindrome - 1.
- */
 int is_palindrome(listint_t **head)
 {
-	listint_t *tmp, *rev, *mid;
-	size_t size = 0, i;
+	int i = 0, j, **array, flag = 1;
+	listint_t *temp;
 
-	if (*head == NULL || (*head)->next == NULL)
-		return (1);
-
-	tmp = *head;
-	while (tmp)
+	if (!(*head))
+		return (flag);
+	array = (int **)malloc(sizeof(int) * 1024);
+	if (!array)
+		return (-1);
+	temp = *head;
+	while (temp)
 	{
-		size++;
-		tmp = tmp->next;
+		array[i] = (int *)malloc(sizeof(int));
+		*array[i] = temp->n;
+		temp = temp->next, i++;
 	}
-
-	tmp = *head;
-	for (i = 0; i < (size / 2) - 1; i++)
-		tmp = tmp->next;
-
-	if ((size % 2) == 0 && tmp->n != tmp->next->n)
-		return (0);
-
-	tmp = tmp->next->next;
-	rev = reverse_listint(&tmp);
-	mid = rev;
-
-	tmp = *head;
-	while (rev)
+	array[i] = NULL;
+	i -= 1;
+	for (j = 0; array[j] && i >= 0; j++)
 	{
-		if (tmp->n != rev->n)
-			return (0);
-		tmp = tmp->next;
-		rev = rev->next;
+		if (*array[j] != *array[i])
+			flag = 0;
+		i -= 1;
 	}
-	reverse_listint(&mid);
-
-	return (1);
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+	return (flag);
 }
