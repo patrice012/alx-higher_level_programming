@@ -12,7 +12,7 @@ int is_palindrome(listint_t **head)
 	int i = 0, j, **array, flag = 1, size = 0;
 	listint_t *temp = *head;
 
-	if (!(*head) || (*head)->next == NULL)
+	if (!(*head))
 		return (flag);
 	while (temp)
 	{
