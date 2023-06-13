@@ -19,7 +19,7 @@ int is_palindrome(listint_t **head)
 		size++;
 		temp = temp->next;
 	}
-	array = (int **)malloc(sizeof(int) * (1023+ 1));
+	array = (int **)malloc(sizeof(int) * (size + 1));
 	if (!array)
 		return (0);
 	while (temp)
@@ -28,9 +28,9 @@ int is_palindrome(listint_t **head)
 		*array[i] = temp->n;
 		temp = temp->next, i++;
 	}
-	array[i] = NULL, k = i - 1;
-	i -= 1;
-	for (j = 0; j <= (k / 2) && i >= 0; j++)
+	array[i] = NULL, i -= 1;
+	k = i;
+	for (j = 0; j <= k && i >= 0; j++)
 	{
 		if (*array[j] != *array[i])
 		{
