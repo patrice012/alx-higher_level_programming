@@ -19,7 +19,7 @@ int is_palindrome(listint_t **head)
 		size++;
 		temp = temp->next;
 	}
-	array = (int **)malloc(sizeof(int) * (size + 1));
+	array = (int **)malloc(sizeof(int) * (1023+ 1));
 	if (!array)
 		return (0);
 	while (temp)
