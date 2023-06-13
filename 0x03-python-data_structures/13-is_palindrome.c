@@ -28,8 +28,8 @@ int is_palindrome(listint_t **head)
 		*array[i] = temp->n;
 		temp = temp->next, i++;
 	}
-	array[i] = NULL;
-	k = i, i -= 1;
+	array[i] = NULL, k = i - 1;
+	i -= 1;
 	for (j = 0; j <= (k / 2) && i >= 0; j++)
 	{
 		if (*array[j] != *array[i])
