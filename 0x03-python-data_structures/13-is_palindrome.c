@@ -26,22 +26,17 @@ int is_palindrome(listint_t **head)
 	}
 	array[i] = NULL;
 	i -= 1;
-	for (j = 0; j < i / 2 && i >= 0; j++)
+	for (j = 0; array[j] && i >= 0; j++)
 	{
 		if (*array[j] != *array[i])
-		{
 			flag = 0;
-			break;
-		}
-		free(array[j]);
-		free(array[i]);
 		i -= 1;
 	}
 	i = 0;
-	while (array[j] && flag == 0)
+	while (array[i])
 	{
-		free(array[j]);
-		j++;
+		free(array[i]);
+		i++;
 	}
 	free(array);
 	return (flag);
