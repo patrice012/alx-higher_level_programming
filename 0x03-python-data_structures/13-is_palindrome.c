@@ -9,10 +9,10 @@
 
 int is_palindrome(listint_t **head)
 {
-	int i = 0, j, **array, flag = 1;
+	int i = 0, j, k, **array, flag = 1;
 	listint_t *temp;
 
-	if (!(*head))
+	if (!(*head) || !(*head)->next)
 		return (flag);
 	array = (int **)malloc(sizeof(int) * 1024);
 	if (!array)
@@ -26,7 +26,8 @@ int is_palindrome(listint_t **head)
 	}
 	array[i] = NULL;
 	i -= 1;
-	for (j = 0; j <= (i / 2) && i >= 0; j++)
+	k = i;
+	for (j = 0; j <= (k / 2) && i >= 0; j++)
 	{
 		if (*array[j] != *array[i])
 		{
