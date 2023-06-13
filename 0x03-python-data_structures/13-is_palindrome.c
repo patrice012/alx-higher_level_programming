@@ -29,7 +29,7 @@ int is_palindrome(listint_t **head)
 		temp = temp->next, i++;
 	}
 	array[i] = NULL;
-	i -= 1, k = i;
+	k = i, i -= 1;
 	for (j = 0; j <= (k / 2) && i >= 0; j++)
 	{
 		if (*array[j] != *array[i])
