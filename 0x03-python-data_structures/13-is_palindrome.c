@@ -21,7 +21,7 @@ int is_palindrome(listint_t **head)
 	}
 	array = (int **)malloc(sizeof(int) * (size + 1));
 	if (!array)
-		return (-1);
+		return (0);
 	while (temp)
 	{
 		array[i] = (int *)malloc(sizeof(int));
