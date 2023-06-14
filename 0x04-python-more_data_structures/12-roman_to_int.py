@@ -21,5 +21,4 @@ def roman_to_int(roman_string):
         result += nums[i]
         if nums[i - 1] < nums[i] and i != 0:
             result -= nums[i - 1] * 2
-
     return result
