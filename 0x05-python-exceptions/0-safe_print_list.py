@@ -12,4 +12,4 @@ def safe_print_list(my_list=[], x=0):
                 print(value, end="")
                 count += 1
         print()
-    return count
+        return count
