@@ -24,6 +24,14 @@ class Square:
 
         self.__size = size
 
+    def area(self):
+        """ Calculate the area ot the given square
+
+        Returns:
+            area(int): the area of the size
+        """
+        return self.__size * self.__size
+
     @property
     def size(self):
         """Help to get private attribute value
@@ -49,11 +57,3 @@ class Square:
         if size < 0:
             raise ValueError("size must be >= 0")
         self.__size = size
-
-    def area(self):
-        """ Calculate the area ot the given square
-
-        Returns:
-            area(int): the area of the size
-        """
-        return self.__size * self.__size
