@@ -1,22 +1,23 @@
 #!usr/bin/python3
 
-"""module contain class"""
+"""
+Module Square
+
+Classes:
+    Square - A class square
+"""
 
 
 class Square:
-    """Class Square that defines a square
+    """
+    An class square
 
-    Private instance attribute: size
-    Instantiation with size (no type/value verification)
+    Args:
+        __size: the size of the square. should be an
+        int that's greater than 0
     """
 
     def __init__(self, size=0):
-        """ Init a private attribute
-
-        Args:
-            size(int): Size of the square
-        """
-
         if type(size) is not int:
             raise TypeError("size must be an integer")
         if size < 0:
@@ -30,4 +31,4 @@ class Square:
         Returns:
             area(int): the area of the size
         """
-        return self.__size * self.__size
+        return self.__size ** 2
