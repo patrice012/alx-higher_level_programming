@@ -18,12 +18,6 @@ class Square:
     """
 
     def __init__(self, size=0):
-        """ Init a private attribute
-
-        Args:
-            size(int): Size of the square
-        """
-
         if type(size) is not int:
             raise TypeError("size must be an integer")
         if size < 0:
