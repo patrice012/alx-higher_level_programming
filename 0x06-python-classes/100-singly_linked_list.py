@@ -22,7 +22,7 @@ class Node:
     def data(self, new_data):
         """set node data
 
-	Args:
+        Args:
             new_data: new node value
         """
         if type(new_data) is not int:
