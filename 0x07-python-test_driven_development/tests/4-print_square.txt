@@ -6,6 +6,18 @@ Using: ``print_square`` function
 
 
 >>> print_square = __import__('4-print_square').print_square
+
+test module docstring
+    >>> m = __import__("4-print_square").__doc__
+	>>> len(m) > 1
+	True
+
+test function docstring
+    >>> f = __import__("4-print_square").print_square.__doc__
+    >>> len(f) > 1
+    True
+    
+    
 >>> print_square(4)
 ####
 ####

@@ -20,11 +20,16 @@ def text_indentation(text):
         raise TypeError("text must be a string")
     chars = ['.', '?', ':']
     if len(text) != 0:
-        for index, char in enumerate(text):
-            if char in chars:
-                print(char)
+        test = 0
+        for c in text:
+            if test == 0 and c == ' ':
+                continue
+            elif test == 0 and c != ' ':
+                test= 1
+
+            if test == 1 and c in chars:
+                print(c)
                 print()
-            else:
-                if text[index + 1] == "":
-                    continue
-                print(char, end='')
+                test = 0
+            elif test == 1:
+                print(c, end="")

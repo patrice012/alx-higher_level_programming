@@ -11,6 +11,17 @@ Usage:	say_my_name(first_name, last_name)
 
 
 >>> say_my_name = __import__("3-say_my_name").say_my_name
+
+test module docstring
+    >>> m = __import__("3-say_my_name").__doc__
+	>>> len(m) > 1
+	True
+
+test function docstring
+    >>> f = __import__("3-say_my_name").say_my_name.__doc__
+    >>> len(f) > 1
+    True
+    
 >>> say_my_name("Peter", "Doe")
 My name is Peter Doe
 >>> say_my_name("Peter")
