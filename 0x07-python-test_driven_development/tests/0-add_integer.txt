@@ -14,6 +14,17 @@ that value is equivalent to using the ``+`` operator.
 
 ::
 	>>> add_integer = __import__('0-add_integer').add_integer
+	
+	test module docstring
+    >>> m = __import__("0-add_integer").__doc__
+	>>> len(m) > 1
+	True
+
+test function docstring
+    >>> f = __import__("0-add_integer").add_integer.__doc__
+    >>> len(f) > 1
+    True
+    
 	>>> add_integer(1, 5)
 	6
 	>>> add_integer(1.55462, 8.5472)
