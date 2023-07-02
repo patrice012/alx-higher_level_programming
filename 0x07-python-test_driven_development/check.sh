@@ -62,3 +62,10 @@ echo "function docstings count:"
 python3 -c 'print(__import__("5-text_indentation").text_indentation.__doc__)' | wc -l
 echo "================================================"
 
+
+echo "============  start task 5 ===================="
+echo "Testint started..."
+echo ""
+python3 -m unittest tests.6-max_integer_test 2>&1 | tail -1
+echo "Testing ended..."
+echo "================================================"

@@ -25,7 +25,7 @@ def text_indentation(text):
             if test == 0 and c == ' ':
                 continue
             elif test == 0 and c != ' ':
-                test= 1
+                test = 1
 
             if test == 1 and c in chars:
                 print(c)
