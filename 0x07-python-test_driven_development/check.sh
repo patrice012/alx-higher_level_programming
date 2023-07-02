@@ -35,3 +35,17 @@ python3 -c 'print(__import__("3-say_my_name").__doc__)' | wc -l
 echo "function docstings count:"
 python3 -c 'print(__import__("3-say_my_name").say_my_name.__doc__)' | wc -l
 echo "================================================"
+
+
+echo "============  start task 3 ===================="
+echo "Testint started..."
+echo ""
+python3 -m doctest -v ./tests/4-print_square.txt | tail -2
+echo "Testing ended..."
+echo ""
+echo "Module docstings count:"
+python3 -c 'print(__import__("4-print_square").__doc__)' | wc -l
+echo "function docstings count:"
+python3 -c 'print(__import__("4-print_square").print_square.__doc__)' | wc -l
+echo "================================================"
+
