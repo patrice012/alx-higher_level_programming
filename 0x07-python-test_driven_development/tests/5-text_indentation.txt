@@ -1,0 +1,14 @@
+Module: ``5-text_indentation``
+======
+
+Test for the function: ``text_indentation``
+---------------------
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere?"
+>>> text_indentation(text)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
