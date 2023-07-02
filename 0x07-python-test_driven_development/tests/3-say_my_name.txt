@@ -1,0 +1,43 @@
+Module: ``3-say_my_name``
+=======
+
+Using: ``say_my_name()`` function. This function
+=====
+		prints "My name is ``<first name> <last name>``" with ``first name`` and
+		``last name`` as function's parameters
+
+Usage:	say_my_name(first_name, last_name)
+-----
+
+
+>>> say_my_name = __import__("3-say_my_name").say_my_name
+>>> say_my_name("Peter", "Doe")
+My name is Peter Doe
+>>> say_my_name("Peter")
+My name is Peter
+>>> say_my_name("")
+Traceback (most recent call last):
+	...
+TypeError: first_name must be a string
+>>> say_my_name("John Doh", "alpha")
+My name is John Doh alpha
+>>> say_my_name("John Doh", "")
+My name is John Doh
+>>> say_my_name("Joseph", "Edouard Snowden")
+My name is Joseph Edouard Snowden
+>>> say_my_name("4", "four")
+Traceback (most recent call last):
+	...
+TypeError: first_name must be a string
+>>> say_my_name("John", 7)
+Traceback (most recent call last):
+	...
+TypeError: last_name must be a string
+>>> say_my_name("John", "0.888")
+Traceback (most recent call last):
+	...
+TypeError: last_name must be a string
+>>> say_my_name(8.1470)
+Traceback (most recent call last):
+	...
+TypeError: first_name must be a string
