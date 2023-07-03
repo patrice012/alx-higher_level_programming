@@ -11,3 +11,5 @@ echo "Test task 4"
 python3 -m unittest tests.4-rectangle_test
 echo "Test task 5"
 python3 -m unittest tests.5-rectangle_test
+echo "Test task 6"
+python3 -m unittest tests.6-rectangle_test
