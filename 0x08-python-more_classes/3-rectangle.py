@@ -79,3 +79,19 @@ class Rectangle:
         if self.__width == 0 or self.__height == 0:
             return 0
         return (self.__width + self.__height) * 2
+
+    def __str__(self):
+        """Change string representation
+
+        Using # inn place of obj name
+        """
+        if self.__width == 0 or self.__height == 0:
+            return ""
+        return '\n'.join(['#' * self.width] * self.height)
+
+    def __repr__(self):
+        """Return string representation of obj"""
+        module = self.__module__
+        class_name = self.__class__.__name__
+        obj_id = hex(id(self))
+        return f'<{module}.{class_name} object at {obj_id}>'

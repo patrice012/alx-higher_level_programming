@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-Unittest for Rectangle class define in 2-rectangle module
+Unittest for Rectangle class define in 3-rectangle module
 """
 import unittest
-file = __import__('2-rectangle')
+file = __import__('3-rectangle')
 
 class TestEmptyClass(unittest.TestCase):
     """Test case for empty class"""
@@ -72,8 +72,23 @@ class TestEmptyClass(unittest.TestCase):
         self.rect.width = 0
         self.assertEqual(self.rect.perimeter(), 0)
 
+    def test_string_representation_of_obj__str__(self):
+        self.rect.height = 1
+        self.rect.width = 2
+        output = "##"
+        self.assertEqual(str(self.rect), output)
+    
+    def test_empty_representation_of_obj__str__(self):
+        self.rect.height = 1
+        self.rect.width = 0
+        output = ""
+        self.assertEqual(str(self.rect), output)
+    
+    def test_string_representation_of_obj__repr__(self):
+        output = "<3-rectangle.Rectangle object at"
+        self.assertIn(output, repr(self.rect))
 
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
