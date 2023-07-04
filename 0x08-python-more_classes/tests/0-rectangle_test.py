@@ -16,6 +16,9 @@ class TestEmptyClass(unittest.TestCase):
         """Verify the type of class instance"""
         self.assertTrue(self.rect.__class__ == file.Rectangle)
 
+    def test_class_name_using_instance_attrs(self):
+        self.assertEqual(self.rect.__class__.__name__, 'Rectangle')
+
     def test_docstrings(self):
         self.assertTrue(len(self.rect.__doc__) > 0)
         self.assertTrue(len(file.__doc__) > 0)
