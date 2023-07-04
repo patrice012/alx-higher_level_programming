@@ -121,15 +121,12 @@ class Rectangle:
     def bigger_or_equal(rect_1, rect_2):
         """Return the Rectangle with the greater area
 
-        used to find and return  the biggest rectangle based on the area
-
+        Used to find and return  the biggest rectangle based on the area
         Args:
             rect_1(instance of Rectangle): first object
             rect_2(instance of Rectangle): second object
-
         Raises:
-            TypeError: if rect_1 or rect_2 is not an instance of Rectangle class
-
+            TypeError: if rect_1 or rect_2 is not an instance of Rectangle
         Returns:
              Rectangle object
         """
