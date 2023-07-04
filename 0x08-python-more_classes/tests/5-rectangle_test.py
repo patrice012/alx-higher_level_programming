@@ -28,6 +28,22 @@ class TestEmptyClass(unittest.TestCase):
             self.assertEqual(self.rect.__width, "__width")
             self.assertEqual(self.rect.__height, "__height")
 
+    def test_init_instance_method_with_invalid_height(self):
+        with self.assertRaises(ValueError):
+            r = file.Rectangle(2, -8)
+    
+    def test_init_instance_method_with_invalid_width(self):
+        with self.assertRaises(ValueError):
+            r = file.Rectangle(-100, 8)
+    
+    def test_init_instance_method_with_invalid_height_type(self):
+        with self.assertRaises(TypeError):
+            r = file.Rectangle(2, '587')
+    
+    def test_init_instance_method_with_invalid_width_type(self):
+        with self.assertRaises(TypeError):
+            r = file.Rectangle('88', 88)
+
     def test_get_and_set_value(self):
         self.assertEqual(self.rect.height, 6)
         self.assertEqual(self.rect.width, 4)

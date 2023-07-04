@@ -28,6 +28,22 @@ class TestEmptyClass(unittest.TestCase):
             self.assertEqual(self.rect.__width, "__width")
             self.assertEqual(self.rect.__height, "__height")
 
+    def test_init_instance_method_with_invalid_height(self):
+        with self.assertRaises(ValueError):
+            r = file.Rectangle(2, -8)
+    
+    def test_init_instance_method_with_invalid_width(self):
+        with self.assertRaises(ValueError):
+            r = file.Rectangle(-100, 8)
+    
+    def test_init_instance_method_with_invalid_height_type(self):
+        with self.assertRaises(TypeError):
+            r = file.Rectangle(2, '587')
+    
+    def test_init_instance_method_with_invalid_width_type(self):
+        with self.assertRaises(TypeError):
+            r = file.Rectangle('88', 88)
+
     def test_get_and_set_value(self):
         self.assertEqual(self.rect.height, 6)
         self.assertEqual(self.rect.width, 4)
@@ -188,7 +204,7 @@ class TestEmptyClass(unittest.TestCase):
         self.assertEqual(comp(li[2], li[3]), li[2])
         self.assertEqual(comp(li[3], li[3]), li[3])
 
-    def test_not_Rectangle_obj(self):
+    def test_not_Rectangle_obj_using_other_data_type(self):
         comp = file.Rectangle.bigger_or_equal
         rect_1 = 1
         rect_2 = 0.88
@@ -206,13 +222,19 @@ class TestEmptyClass(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.assertEqual(comp(rect_4, rect_5), rect_5)
 
-    def test_square_obj_value(self):
+    def test_square_obj_method(self):
         sq = file.Rectangle(5, 5)
-        sq.print_symbol = symb = "$"
         self.assertEqual(sq.area(), 25)
         self.assertEqual(sq.perimeter(), 20)
-        out = "Rectangle(5, 5)"
+
+    def test_square_obj_repr_method(self):
+        sq = file.Rectangle(10, 10)
+        out = "Rectangle(10, 10)"
         self.assertEqual(repr(sq), out)
+
+    def test_square_obj_str_method(self):
+        sq = file.Rectangle(5, 5)
+        sq.print_symbol = symb = "$"
         _format = f'{str(symb) * sq.width}'
         output = _format + '\n' + _format +'\n' +  _format + '\n' + _format + '\n' + _format
         self.assertEqual(str(sq), output)
