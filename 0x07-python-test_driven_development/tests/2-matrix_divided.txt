@@ -153,3 +153,11 @@ testing how function handles non-list matrix
     Traceback (most recent call last):
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+test single element in matrix
+    >>> matrix_divided([[3]], 3)
+    [[1.0]]
+
+test with negative div
+    >>> matrix_divided([[3, 9], [12, 15]] , -3)
+    [[-1.0, -3.0], [-4.0, -5.0]]
