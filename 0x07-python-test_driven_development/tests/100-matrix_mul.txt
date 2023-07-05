@@ -9,6 +9,10 @@ test with two matrices
     >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
     [[7, 10], [15, 22]]
 
+test with more than 2 elements in row
+    >>> matrix_mul([[1, 2, 5], [8, 0, 1], [2 ,6 ,1]], [[2, 5, 2], [6, 3,1], [3, 4, 1]])
+    [[40, 33, 11], [33, 43, 16], [33, 31, 11]]
+
 test with None
     >>> matrix_mul([[1, 2], [3, 4]], None)
     Traceback (most recent call last):
