@@ -40,7 +40,7 @@ def matrix_divided(matrix, div):
         if False in [type(x) in (int, float) for x in row]:
             raise TypeError(err_msg)
         sizes.append(len(row))
-        new_matrix.append(list(map(lambda x: round(x / div, 2), row)))
+        new_matrix.append(list(map(lambda x: round(x/div, 2), row)))
     if len(set(sizes)) != 1:
         raise TypeError("Each row of the matrix must have the same size")
     return new_matrix
