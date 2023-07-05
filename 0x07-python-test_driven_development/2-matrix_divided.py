@@ -25,17 +25,17 @@ def matrix_divided(matrix, div):
     Returns:
         The new matrix
     """
-    if type(div) not in (int, float):
+    if not (type(div) in (int, float)):
         raise TypeError("div must be a number")
     if div == 0:
         raise ZeroDivisionError("division by zero")
     err_msg = "matrix must be a matrix (list of lists) of integers/floats"
-    if not isinstance(matrix, list) or len(matrix) == 0:
+    if not isinstance(matrix, list):
         raise TypeError(err_msg)
     new_matrix = []
     sizes = []
     for row in matrix:
-        if not isinstance(row, list) or len(row) == 0:
+        if not isinstance(row, list):
             raise TypeError(err_msg)
         if False in [type(x) in (int, float) for x in row]:
             raise TypeError(err_msg)

@@ -20,7 +20,7 @@ def print_square(size):
                 or size is float and less than 0
         ValueError: When size is less than 0
     """
-    if size is None or not type(size) in (int, float):
+    if size is None or not (type(size) in (int, float)):
         raise TypeError("size must be an integer")
 
     elif type(size) is float and size < 0:
