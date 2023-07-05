@@ -1,9 +1,25 @@
 #!/usr/bin/python3
-"""this module contains the matrix_mul function"""
+"""
+This module contains the matrix_mul function
+
+Usage: matrix_mul(A, B)
+A and B are of type List of List (matrice)
+"""
 
 
 def matrix_mul(m_a, m_b):
-    """multiplies two matrices"""
+    """multiplies two matrices
+
+    Args:
+        m_a(list of list): matrice A
+        m_b(list of list): matrice B
+
+    Raises:
+        TypeError: if matrix or matrix's element are not a list type
+        TypeError: if element in the rows are not integer or float or
+        rows don't have the same size
+        valueError: if matrix or matrix's element is empty
+    """
     if type(m_a) is not list:
         raise TypeError("m_a must be a list")
     if type(m_b) is not list:
