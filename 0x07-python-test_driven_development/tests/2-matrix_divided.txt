@@ -9,7 +9,7 @@ Usage: ``matrix_divided`` divides all elements of a matrix.
 by the given number
 
 ::
-	>>> matrix_divided = __import__("2-matrix_divided").matrix_divided
+	>>> matrix_divided = __import__("2-matrix_divided_1").matrix_divided
 	
 test module docstring
     >>> m = __import__("2-matrix_divided").__doc__
