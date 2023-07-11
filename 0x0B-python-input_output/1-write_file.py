@@ -9,6 +9,8 @@ def write_file(filename="", text=""):
     """
     Write a string to a text file (UTF8)
 
+    Note:
+    function should overwrite the content of the file if it already exists
     Returns the number of characters written:
     Args:
         filename: text file name
