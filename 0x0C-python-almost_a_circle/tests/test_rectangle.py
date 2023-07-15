@@ -150,3 +150,14 @@ class TestBaseClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             rect_2 = Rectangle(-2, 5, y='9')
             rect_2 = Rectangle(-2, 5, y={})
+
+    #test error msg............
+
+
+    def test_area_method(self):
+        self.rect_1.width = 2
+        self.rect_1.height = 4
+        self.assertEqual(self.rect_1.area(), 8)
+
+    def test_display_method(self):
+        pass
