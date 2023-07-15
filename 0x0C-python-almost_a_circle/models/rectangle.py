@@ -101,6 +101,12 @@ class Rectangle(Base):
             raise ValueError('y must be >= 0')
         self.__y = value
 
+    def __str__(self):
+        cls_name ,_id = self.__class__.__name__, self.id
+        width ,height = self.__width, self.__height
+        x, y = self.__x, self.__y
+        return f"[{cls_name}] (<{_id}>) <{x}>/<{y}> - <{width}>/<{height}>"
+        
     def area(self):
         """
         Returns the area value of the Rectangle instance.
