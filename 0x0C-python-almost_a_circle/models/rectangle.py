@@ -105,7 +105,7 @@ class Rectangle(Base):
         cls_name ,_id = self.__class__.__name__, self.id
         width ,height = self.__width, self.__height
         x, y = self.__x, self.__y
-        return f"[{cls_name}] (<{_id}>) <{x}>/<{y}> - <{width}>/<{height}>"
+        return f"[{cls_name}] ({_id}) {x}/{y} - {width}/{height}"
         
     def area(self):
         """
@@ -114,10 +114,13 @@ class Rectangle(Base):
         return self.__width * self.__height
 
     def display(self):
-        """
-         Prints in stdout the Rectangle instance with the character #
-        """
-        for i in range(self.__height):
-            for j in range(self.__width):
-                print("#", end='')
-            print()
+        """Print the Rectangle using the `#` character."""
+        if self.width == 0 or self.height == 0:
+            print("")
+            return
+
+        [print("") for y in range(self.y)]
+        for h in range(self.height):
+            [print(" ", end="") for x in range(self.x)]
+            [print("#", end="") for w in range(self.width)]
+            print("")

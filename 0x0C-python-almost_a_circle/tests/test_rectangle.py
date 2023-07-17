@@ -164,5 +164,5 @@ class TestBaseClass(unittest.TestCase):
 
     def test___str__output(self):
         rect_2 = Rectangle(10, 20, x=2, y=3, id=1)
-        output = '[Rectangle] (<1>) <2>/<3> - <10>/<20>'
+        output = '[Rectangle] (1) 2/3 - 10/20'
         self.assertEqual(str(rect_2), output)
