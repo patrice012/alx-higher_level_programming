@@ -6,14 +6,31 @@ import io
 import sys
 import unittest
 from models.rectangle import Rectangle
+from models.base import Base
 
 
-class TestBaseClass(unittest.TestCase):
+class TestBaseClassDocstrings(unittest.TestCase):
 
     def test_docstrings(self):
         """Test for  docs"""
         self.assertTrue(len(Rectangle.__doc__) > 0)
         self.assertTrue(len(Rectangle.__module__.__doc__) > 0)
+
+
+class TestRectangeBaseClass(unittest.TestCase):
+    """Test class inheritance behavior"""
+
+    def setUp(self):
+        self.rect_1 = Rectangle(10, 20, 5, 8)
+
+    def test_inheritance_from_rectangle_cls(self):
+        self.assertTrue(issubclass(type(self.rect_1), Base))
+
+    def test_is_base(self):
+        self.assertIsInstance(self.rect_1, Base)
+
+    def test_is_rectangle(self):
+        self.assertIsInstance(self.rect_1, Rectangle)
 
 
 class TestRectangleAttrs(unittest.TestCase):
