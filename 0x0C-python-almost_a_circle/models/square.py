@@ -10,6 +10,10 @@ class Square(Rectangle):
     Class define square
     """
 
+    def __init__(self, size, x=0, y=0, id=None):
+        """define and create new square base on Rectangle class"""
+        super().__init__(id=id, width=size, height=size, x=x, y=y)
+
     @property
     def size(self):
         return self.width
@@ -21,17 +25,12 @@ class Square(Rectangle):
 
         Args:
             value(int): new attrs value
-
         Raises:
             TypeError: if value is not int
-            ValueError: if value < 0
+            ValueError: if value <= 0
         """
         self.width = value
         self.height = value
-
-    def __init__(self, size, x=0, y=0, id=None):
-        """define and create new square base on Rectangle class"""
-        super().__init__(id=id, width=size, height=size, x=x, y=y)
 
     def __str__(self):
         """Define custom str method"""
@@ -47,3 +46,38 @@ class Square(Rectangle):
                 "y": self.y
                 }
         return __dict
+
+    def update(self, *args, **kwargs):
+        """Update the Rectangle.
+
+        Args:
+            *args (ints): New attribute values.
+                - 1st argument represents id attribute
+                - 2th argument represents x attribute
+                - 3th argument represents size attribute
+                - 4th argument represents y attribute
+            **kwargs (dict): New key/value pairs of attributes.
+        """
+
+        if args and len(args) != 0:
+            for i in range(0, len(args)):
+                match i + 1:
+                    case 1:
+                        if args[i] is not None:
+                            self.id = args[i]
+                    case 2:
+                        self.x = args[i]
+                    case 3:
+                        self.size = args[i]
+                    case 4:
+                        self.y = args[i]
+        else:
+            for key in kwargs:
+                if key == 'id' and kwargs[key] is not None:
+                    self.id = kwargs.get(key)
+                elif key == 'size':
+                    self.size = kwargs.get(key)
+                elif key == 'x':
+                    self.x = kwargs.get(key)
+                elif key == 'y':
+                    self.y = kwargs.get(key)

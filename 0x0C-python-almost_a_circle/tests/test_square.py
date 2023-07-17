@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 """
-Unittesting for module models/rectangle.py
+Unittesting for module models/Square.py
 """
 import io
 import sys
 import unittest
 from models.square import Square
 from models.base import Base
-from models.rectangle import Rectangle
 
 
 class TestDocstrings(unittest.TestCase):
@@ -34,7 +33,7 @@ class TestSquareBaseClass(unittest.TestCase):
         self.assertTrue(issubclass(type(self.sq), Base))
 
     def test_inheritance_from_rectangle_cls(self):
-        self.assertTrue(issubclass(type(self.sq), Rectangle))
+        self.assertTrue(issubclass(type(self.sq), Square))
 
     def test_is_base(self):
         self.assertIsInstance(self.sq, Base)
@@ -148,20 +147,20 @@ class TestAttrsExecptions(unittest.TestCase):
 class TestInheritAttrsAndMethod(unittest.TestCase):
     """Test for methods and attrs"""
     @staticmethod
-    def capture_stdout(square, method):
+    def capture_stdout(Square, method):
         """Captures and returns text printed to stdout.
         Args:
-            square (Square): The Square to print to stdout.
-            method (str): The method to run on square.
+            Square (Square): The Square to print to stdout.
+            method (str): The method to run on Square.
         Returns:
             The text printed to stdout by calling method on sq.
         """
         capture = io.StringIO()
         sys.stdout = capture
         if method == "print":
-            print(square)
+            print(Square)
         else:
-            square.display()
+            Square.display()
         sys.stdout = sys.__stdout__
         return capture
 
@@ -184,4 +183,22 @@ class TestDictMethod(unittest.TestCase):
         sq = Square(10, 2, 1)
         output = {'id': 1, 'x': 2, 'size': 10, 'y': 1}
         self.assertEqual(sq.to_dictionary(), output)
+
+
+class TestSquareUpdate(unittest.TestCase):
+    def test_update_kwargs_three(self):
+        rect_1 = Square(10, 5, 8)
+        rect_1.id = 89
+        self.assertEqual("[Square] (89) 5/8 - 10", str(rect_1))
+
+    def test_update_kwargs_four(self):
+        rect_1 = Square(8)
+        rect_1.update(id=2, x=1, y=3, size=4)
+        self.assertEqual("[Square] (2) 1/3 - 4", str(rect_1))
+
+    def test_update_kwargs_two(self):
+        Square._Base__nb_objects = 0
+        rect_1 = Square(2)
+        rect_1.update(y=5, x=8)
+        self.assertEqual("[Square] (1) 8/5 - 2", str(rect_1))
 
