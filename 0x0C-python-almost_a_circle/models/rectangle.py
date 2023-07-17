@@ -124,3 +124,47 @@ class Rectangle(Base):
             [print(" ", end="") for x in range(self.x)]
             [print("#", end="") for w in range(self.width)]
             print("")
+
+    def update(self, *args, **kwargs):
+        """Update the Rectangle.
+
+        Args:
+            *args (ints): New attribute values.
+                - 1st argument represents id attribute
+                - 2nd argument represents width attribute
+                - 3rd argument represent height attribute
+                - 4th argument represents x attribute
+                - 5th argument represents y attribute
+            **kwargs (dict): New key/value pairs of attributes.
+        """
+
+        if args and len(args) != 0:
+            for i in range(0, len(args)):
+                match i + 1:
+                    case 1:
+                        if args[i] is not None:
+                            self.id = args[i]
+                    case 2:
+                        self.width = args[i]
+                    case 3:
+                        self.height = args[i]
+                    case 4:
+                        self.x = args[i]
+                    case 5:
+                        self.y = args[i]
+        else:
+            for key in kwargs:
+                # if key == "id" and kwargs[key] is None:
+                #     # self.__init__(self.width, self.height, self.x, self.y)
+                #     pass
+                # else:
+                if key == 'id' and kwargs[key] is not None:
+                    self.id = kwargs.get(key)
+                elif key == 'width':
+                    self.width = kwargs.get(key)
+                elif key == 'height':
+                    self.height = kwargs.get(key)
+                elif key == 'x':
+                    self.x = kwargs.get(key)
+                elif key == 'y':
+                    self.y = kwargs.get(key)
