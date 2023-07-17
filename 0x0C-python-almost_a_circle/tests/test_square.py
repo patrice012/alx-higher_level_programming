@@ -87,23 +87,23 @@ class TestSquareInstantiantion(unittest.TestCase):
 
 class TestSquareAttrsAccess(unittest.TestCase):
     
-    # def test_size_getter(self):
-    #     self.assertEqual(5, Square(5, 2, 3, 9).size)
+    def test_size_getter(self):
+        self.assertEqual(5, Square(5, 2, 3, 9).size)
 
-    # def test_size_setter(self):
-    #     sq = Square(4, 1, 9, 2)
-    #     sq.size = 8
-    #     self.assertEqual(8, sq.size)
+    def test_size_setter(self):
+        sq = Square(4, 1, 9, 2)
+        sq.size = 8
+        self.assertEqual(8, sq.size)
 
-    # def test_width_getter(self):
-    #     sq = Square(4, 1, 9, 2)
-    #     sq.size = 8
-    #     self.assertEqual(8, sq.width)
+    def test_width_getter(self):
+        sq = Square(4, 1, 9, 2)
+        sq.size = 8
+        self.assertEqual(8, sq.width)
 
-    # def test_height_getter(self):
-    #     sq = Square(4, 1, 9, 2)
-    #     sq.size = 8
-    #     self.assertEqual(8, sq.height)
+    def test_height_getter(self):
+        sq = Square(4, 1, 9, 2)
+        sq.size = 8
+        self.assertEqual(8, sq.height)
 
     def test_x_getter(self):
         self.assertEqual(0, Square(10).x)
@@ -111,6 +111,38 @@ class TestSquareAttrsAccess(unittest.TestCase):
     def test_y_getter(self):
         self.assertEqual(0, Square(10).y)
 
+
+class TestAttrsExecptions(unittest.TestCase):
+
+    def setUp(self):
+        self.sq = Square(1)
+
+    def test_invalid_size_value(self):
+        with self.assertRaisesRegex(TypeError, 'width must be an integer'):
+            self.sq.size = 5.55
+            self.sq.size = 'hello'
+
+    def test_invalid_size_type(self):
+        with self.assertRaisesRegex(ValueError, 'width must be > 0'):
+            self.sq.size = -5
+
+    def test_invalid_x_value(self):
+        with self.assertRaisesRegex(TypeError, 'x must be an integer'):
+            self.sq.x = 5.55
+            self.sq.x = 'hello'
+
+    def test_invalid_x_type(self):
+        with self.assertRaisesRegex(ValueError, 'x must be >= 0'):
+            self.sq.x = -5
+
+    def test_invalid_y_value(self):
+        with self.assertRaisesRegex(TypeError, 'y must be an integer'):
+            self.sq.y = 5.55
+            self.sq.y = 'hello'
+
+    def test_invalid_y_type(self):
+        with self.assertRaisesRegex(ValueError, 'y must be >= 0'):
+            self.sq.y = -5
 
 
 class TestInheritAttrsAndMethod(unittest.TestCase):

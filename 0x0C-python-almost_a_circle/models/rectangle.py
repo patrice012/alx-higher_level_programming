@@ -19,9 +19,9 @@ class Rectangle(Base):
         Args:
             width(int or float): rectangle object width
             height(int or float): rectangle object heigh
-            x(int or float):
-            y(int or float):
-            id(int): object unique ==identifiant==
+            x(int or float): rectangle x value
+            y(int or float): rectangle y value
+            id(int): object id
         """
         if type(width) is not int:
             raise TypeError('width must be an integer')
