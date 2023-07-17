@@ -557,3 +557,11 @@ class TestRectangle_update_kwargs(unittest.TestCase):
 
 
 
+
+class TestDictMethod(unittest.TestCase):
+    """Test instance method"""
+    def test_to_dictionary_method(self):
+        Rectangle._Base__nb_objects = 0
+        rect = Rectangle(10, 2, 1, 9)
+        output = {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10}
+        self.assertEqual(rect.to_dictionary(), output)

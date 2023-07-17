@@ -37,3 +37,13 @@ class Square(Rectangle):
         """Define custom str method"""
         cls_name = self.__class__.__name__
         return f'[{cls_name}] ({self.id}) {self.x}/{self.y} - {self.width}'
+
+    def to_dictionary(self):
+        """Returns the dictionary representation of a Square"""
+        __dict = {
+                "id": self.id,
+                "x": self.x,
+                "size": self.width,
+                "y": self.y
+                }
+        return __dict

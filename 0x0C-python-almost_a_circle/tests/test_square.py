@@ -176,3 +176,12 @@ class TestInheritAttrsAndMethod(unittest.TestCase):
         capture = TestInheritAttrsAndMethod.capture_stdout(rect_1, "display")
         self.assertEqual("##\n##\n", capture.getvalue())
 
+
+class TestDictMethod(unittest.TestCase):
+    """Test instance method"""
+    def test_to_dictionary_method(self):
+        Square._Base__nb_objects = 0
+        sq = Square(10, 2, 1)
+        output = {'id': 1, 'x': 2, 'size': 10, 'y': 1}
+        self.assertEqual(sq.to_dictionary(), output)
+
