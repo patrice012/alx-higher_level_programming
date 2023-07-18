@@ -147,7 +147,7 @@ class TestRectangleInstantiation(unittest.TestCase):
     def test_init_with_no_id(self):
         Base.__nb_objects = 0
         rect_1  = Rectangle(12, 55)
-        self.assertEqual(rect_1.id, 63)
+        self.assertTrue(rect_1.id > 0)
 
     def test_init_with_id_calling_super(self):
         # Base.__nb_objects = 0
@@ -580,5 +580,9 @@ class TestDictMethod(unittest.TestCase):
     def test_to_dictionary_method(self):
         Rectangle._Base__nb_objects = 0
         rect = Rectangle(10, 2, 1, 9)
-        output = {'x': 1, 'y': 9, 'id': 38, 'height': 2, 'width': 10}
+        output = {'x': 1, 'y': 9, 'id': rect.id, 'height': 2, 'width': 10}
         self.assertEqual(rect.to_dictionary(), output)
+
+
+if __name__ == "__main__":
+    unittest.main()

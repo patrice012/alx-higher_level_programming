@@ -12,6 +12,7 @@ from models.square import Square
 
 
 
+
 class TestBaseClass(unittest.TestCase):
 
     def test_docstrings(self):
@@ -351,3 +352,7 @@ class TestBase_load_from_file(unittest.TestCase):
     def test_load_from_file_more_than_one_arg(self):
         with self.assertRaises(TypeError):
             Base.load_from_file([], 1)
+
+
+if __name__ == "__main__":
+    unittest.main()

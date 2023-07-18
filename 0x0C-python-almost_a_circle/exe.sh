@@ -49,6 +49,3 @@ fi
 
 # check python code style
 pycodestyle --first *.py
-
-# make	ALL python files executable
-chmod +x *.py

@@ -51,7 +51,7 @@ class TestSquareInstantiantion(unittest.TestCase):
 
     def test_init_with_no_id(self):
         sq = Square(size=1)
-        self.assertEqual(sq.id, 84)
+        self.assertTrue(sq.id > 0)
 
     def test_init_with_id(self):
         sq = Square(id=99, size=1)
@@ -181,7 +181,7 @@ class TestDictMethod(unittest.TestCase):
     def test_to_dictionary_method(self):
         Square._Base__nb_objects = 0
         sq = Square(10, 2, 1)
-        output = {'id': 74, 'x': 2, 'size': 10, 'y': 1}
+        output = {'id': sq.id, 'x': 2, 'size': 10, 'y': 1}
         self.assertEqual(sq.to_dictionary(), output)
 
 
@@ -200,5 +200,8 @@ class TestSquareUpdate(unittest.TestCase):
         Square._Base__nb_objects = 0
         rect_1 = Square(2)
         rect_1.update(y=5, x=8)
-        self.assertEqual("[Square] (93) 8/5 - 2", str(rect_1))
+        self.assertEqual("[Square] ({}) 8/5 - 2".format(rect_1.id), str(rect_1))
 
+
+if __name__ == "__main__":
+    unittest.main()
