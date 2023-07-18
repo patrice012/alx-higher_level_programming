@@ -6,10 +6,14 @@ import json
 
 
 class Base:
-    """This is the "base” of all other classes in this project"""
+    """"base class representation.
+    Attributes:
+        __nb_objects (int): The number of instantiated Bases.
+    """
     __nb_objects = 0
 
     def __init__(self, id=None):
+        """init the class and set it"""
         if id is not None:
             self.id = id
         else:
@@ -18,7 +22,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """JSON string representation
+        """Convert `list_dictionaries` to JSON string representation
 
         Args:
             list_dictionaries(list): is a list of dictionaries

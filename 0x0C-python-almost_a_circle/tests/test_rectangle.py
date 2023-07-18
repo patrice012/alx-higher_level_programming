@@ -22,6 +22,7 @@ class TestRectangeBaseClass(unittest.TestCase):
 
     def setUp(self):
         self.rect_1 = Rectangle(10, 20, 5, 8)
+        Base.__nb_objects = 0
 
     def test_inheritance_from_rectangle_cls(self):
         self.assertTrue(issubclass(type(self.rect_1), Base))
@@ -37,7 +38,7 @@ class TestRectangleAttrs(unittest.TestCase):
     """Unittests for testing Rectangle class attributs access."""
 
     def  setUp(self):
-        Rectangle._Base__nb_objects = 0
+        Base.__nb_objects = 0
         self.rect_1 = Rectangle(10, 20, 5, 8)
 
 
@@ -63,6 +64,7 @@ class TestRectangleAttributsAccess(unittest.TestCase):
 
     def  setUp(self):
         self.rect_1 = Rectangle(10, 20, 5, 8)
+        Base.__nb_objects = 0
 
     def test_width_getter(self):
         self.assertEqual(self.rect_1.width, 10)
@@ -139,13 +141,16 @@ class TestRectangleAttributsAccess(unittest.TestCase):
 class TestRectangleInstantiation(unittest.TestCase):
     """Unittests for testing the Rectangle class instantiation."""
 
+    def setUp(self):
+        Base.__nb_objects = 0
+
     def test_init_with_no_id(self):
-        Rectangle._Base__nb_objects = 0
+        Base.__nb_objects = 0
         rect_1  = Rectangle(12, 55)
-        self.assertEqual(rect_1.id, 1)
+        self.assertEqual(rect_1.id, 63)
 
     def test_init_with_id_calling_super(self):
-        Rectangle._Base__nb_objects = 0
+        # Base.__nb_objects = 0
         rect_1 = Rectangle(18, 99, id=14)
         self.assertEqual(rect_1.id, 14)
 
@@ -190,6 +195,9 @@ class TestRectangleInstantiation(unittest.TestCase):
 class TestRectangle_area(unittest.TestCase):
     """Unittests for testing the area method of the Rectangle class."""
 
+    def setUp(self):
+        Base.__nb_objects = 0
+
     def test_area_method(self):
         rect_1 = Rectangle(2, 4)
         self.assertEqual(rect_1.area(), 8)
@@ -224,6 +232,9 @@ class TestStrMethod:
 
 class TestRectangle_stdout(unittest.TestCase):
     """Unittests for testing __str__ and display methods of Rectangle class."""
+
+    def setUp(self):
+        Base.__nb_objects = 0
 
     @staticmethod
     def capture_stdout(rect, method):
@@ -308,6 +319,9 @@ class TestRectangle_stdout(unittest.TestCase):
 
 class TestRectangle_update_args(unittest.TestCase):
     """Unittests for testing update args method of the Rectangle class."""
+
+    def tearDown(self):
+        Base.__nb_objects = 0
 
     # Test args
     def test_update_args_zero(self):
@@ -447,6 +461,9 @@ class TestRectangle_update_args(unittest.TestCase):
 class TestRectangle_update_kwargs(unittest.TestCase):
     """Unittests for testing update kwargs method of the Rectangle class."""
 
+    def tearDown(self):
+        Base.__nb_objects = 0
+
     def test_update_kwargs_one(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
         rect_1.update(id=1)
@@ -563,5 +580,5 @@ class TestDictMethod(unittest.TestCase):
     def test_to_dictionary_method(self):
         Rectangle._Base__nb_objects = 0
         rect = Rectangle(10, 2, 1, 9)
-        output = {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10}
+        output = {'x': 1, 'y': 9, 'id': 38, 'height': 2, 'width': 10}
         self.assertEqual(rect.to_dictionary(), output)

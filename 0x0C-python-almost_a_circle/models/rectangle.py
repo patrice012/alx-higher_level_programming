@@ -7,9 +7,8 @@ from models.base import Base
 
 class Rectangle(Base):
     """
-    Class used to define rectangle.
-
-    Inherit from Base class
+    Rectangle class representation.
+    Represents a rectangle and inherits from Base
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
@@ -22,6 +21,12 @@ class Rectangle(Base):
             x(int or float): rectangle x value
             y(int or float): rectangle y value
             id(int): object id
+
+        Attributes:
+            width: rectangle width
+            height: rectangle height
+            x: x position
+            y: y positio
         """
         if type(width) is not int:
             raise TypeError('width must be an integer')
@@ -102,6 +107,7 @@ class Rectangle(Base):
         self.__y = value
 
     def __str__(self):
+        """Return the string representation of the rectangle instance"""
         cls_name ,_id = self.__class__.__name__, self.id
         width ,height = self.__width, self.__height
         x, y = self.__x, self.__y
@@ -118,12 +124,14 @@ class Rectangle(Base):
         if self.width == 0 or self.height == 0:
             print("")
             return
-
-        [print("") for y in range(self.y)]
-        for h in range(self.height):
-            [print(" ", end="") for x in range(self.x)]
-            [print("#", end="") for w in range(self.width)]
-            print("")
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            for _ in range(self.x):
+                print(" ", end="")
+            for _ in range(self.width):
+                print("#", end="")
+            print()
 
     def update(self, *args, **kwargs):
         """Update the Rectangle.

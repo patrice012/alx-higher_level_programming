@@ -7,7 +7,7 @@ from models.rectangle import Rectangle
 
 class Square(Rectangle):
     """
-    Class define square
+    Class define Square representation
     """
 
     def __init__(self, size, x=0, y=0, id=None):
@@ -16,6 +16,7 @@ class Square(Rectangle):
 
     @property
     def size(self):
+        """getter for size"""
         return self.width
 
     @size.setter
