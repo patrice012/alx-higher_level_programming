@@ -144,13 +144,34 @@ class TestRectangleInstantiation(unittest.TestCase):
     def setUp(self):
         Base.__nb_objects = 0
 
+    def test_no_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle()
+
+    def test_one_arg(self):
+        with self.assertRaises(TypeError):
+            Rectangle(1)
+
+    def test_two_args(self):
+        r1 = Rectangle(10, 2)
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r1.id, r2.id - 1)
+
+    def test_three_args(self):
+        r1 = Rectangle(2, 2, 4)
+        r2 = Rectangle(4, 4, 2)
+        self.assertEqual(r1.id, r2.id - 1)
+
+    def test_four_args(self):
+        r1 = Rectangle(1, 2, 3, 4)
+        r2 = Rectangle(4, 3, 2, 1)
+        self.assertEqual(r1.id, r2.id - 1)
+
     def test_init_with_no_id(self):
-        Base.__nb_objects = 0
         rect_1  = Rectangle(12, 55)
         self.assertTrue(rect_1.id > 0)
 
     def test_init_with_id_calling_super(self):
-        # Base.__nb_objects = 0
         rect_1 = Rectangle(18, 99, id=14)
         self.assertEqual(rect_1.id, 14)
 
@@ -189,6 +210,34 @@ class TestRectangleInstantiation(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, 'y must be an integer'):
             rect_2 = Rectangle(2, 5, y='9')
             rect_2 = Rectangle(2, 5, y={})
+
+
+class TestRectangle_order_of_initialization(unittest.TestCase):
+    """Unittests for testing Rectangle order of attribute initialization."""
+
+    def test_width_before_height(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle("invalid width", "invalid height")
+
+    def test_width_before_x(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle("invalid width", 2, "invalid x")
+
+    def test_width_before_y(self):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle("invalid width", 2, 3, "invalid y")
+
+    def test_height_before_x(self):
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            Rectangle(1, "invalid height", "invalid x")
+
+    def test_height_before_y(self):
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            Rectangle(1, "invalid height", 2, "invalid y")
+
+    def test_x_before_y(self):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Rectangle(1, 2, "invalid x", "invalid y")
 
 
 
@@ -582,6 +631,11 @@ class TestDictMethod(unittest.TestCase):
         rect = Rectangle(10, 2, 1, 9)
         output = {'x': 1, 'y': 9, 'id': rect.id, 'height': 2, 'width': 10}
         self.assertEqual(rect.to_dictionary(), output)
+
+    def test_to_dictionary_arg(self):
+        rect_1 = Rectangle(10, 2, 4, 1, 2)
+        with self.assertRaises(TypeError):
+            rect_1.to_dictionary(1)
 
 
 if __name__ == "__main__":

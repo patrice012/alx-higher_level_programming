@@ -29,10 +29,10 @@ class TestSquareBaseClass(unittest.TestCase):
     def setUp(self):
         self.sq = Square(5)
 
-    def test_inheritance_from_base_cls(self):
+    def test_inherit_from_base_cls(self):
         self.assertTrue(issubclass(type(self.sq), Base))
 
-    def test_inheritance_from_rectangle_cls(self):
+    def test_inherit_from_rectangle_cls(self):
         self.assertTrue(issubclass(type(self.sq), Square))
 
     def test_is_base(self):
@@ -184,8 +184,20 @@ class TestDictMethod(unittest.TestCase):
         output = {'id': sq.id, 'x': 2, 'size': 10, 'y': 1}
         self.assertEqual(sq.to_dictionary(), output)
 
+    def test_to_dictionary_no_object_changes(self):
+        sq_1 = Square(10, 2, 1, 2)
+        sq_2 = Square(1, 2, 10)
+        sq_1.update(**sq_1.to_dictionary())
+        self.assertNotEqual(sq_1, sq_2)
+
+    def test_to_dictionary_arg(self):
+        sq = Square(10, 10, 10, 10)
+        with self.assertRaises(TypeError):
+            sq.to_dictionary(1)
+
 
 class TestSquareUpdate(unittest.TestCase):
+
     def test_update_kwargs_three(self):
         rect_1 = Square(10, 5, 8)
         rect_1.id = 89
@@ -201,6 +213,36 @@ class TestSquareUpdate(unittest.TestCase):
         rect_1 = Square(2)
         rect_1.update(y=5, x=8)
         self.assertEqual("[Square] ({}) 8/5 - 2".format(rect_1.id), str(rect_1))
+
+    def test_update_args_width_setter(self):
+        s = Square(10, 10, 10, 10)
+        s.update(89, 2)
+        self.assertEqual(2, s.width)
+
+    def test_update_args_height_setter(self):
+        s = Square(10, 10, 10, 10)
+        s.update(89, 2)
+        self.assertEqual(2, s.height)
+
+    def test_update_args_zero(self):
+        s = Square(10, 10, 10, 10)
+        s.update()
+        self.assertEqual("[Square] (10) 10/10 - 10", str(s))
+
+    def test_update_args_one(self):
+        s = Square(10, 10, 10, 10)
+        s.update(89)
+        self.assertEqual("[Square] (89) 10/10 - 10", str(s))
+
+    def test_update_args_two(self):
+        s = Square(10, 10, 10, 10)
+        s.update(89, 2)
+        self.assertEqual("[Square] (89) 10/10 - 2", str(s))
+
+    def test_update_args_three(self):
+        s = Square(10, 10, 10, 10)
+        s.update(89, 2, 3)
+        self.assertEqual("[Square] (89) 3/10 - 2", str(s))
 
 
 if __name__ == "__main__":
