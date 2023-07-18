@@ -180,7 +180,7 @@ class TestBase_save_to_file(unittest.TestCase):
             Square.save_to_file([], 1)
 
 
-# class TestBase_from_json_string(unittest.TestCase):
+class TestBase_from_json_string(unittest.TestCase):
     """Unittests for testing from_json_string method of Base class."""
 
     def test_from_json_string_type(self):

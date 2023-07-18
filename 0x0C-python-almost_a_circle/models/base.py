@@ -47,3 +47,15 @@ class Base:
                 f.write("{}".format(data))
             else:
                 f.write(Base.to_json_string(data))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Return a list of dictionaries from json string
+
+        Args:
+            json_string(str): is a string representing a list of dictionaries
+        """
+        if json_string:
+            return json.loads(json_string)
+        else:
+            return []
