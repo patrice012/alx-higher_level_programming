@@ -10,18 +10,47 @@ from models.rectangle import Rectangle
 from models.square import Square
 
 
-
-
-
 class TestBaseClass(unittest.TestCase):
+
+    def test_module_docstrings(self):
+        """Test for  docs"""
+        self.assertTrue(len(Base.__doc__) > 0)
+
+    def test_base_docstrings(self):
+        self.assertTrue(len(Base.__module__.__doc__) > 0)
+
+    def test_base_class_methods__init__docstrings(self):
+        self.assertTrue(len(Base.__init__.__doc__) > 0)
+
+    def test_base_class_methods_from_json_string_docstrings(self):
+        self.assertTrue(len(Base.from_json_string.__doc__) > 0)
+
+    def test_base_class_methods__to_json_string__docstrings(self):
+        self.assertTrue(len(Base.to_json_string.__doc__) > 0)
+    
+    def test_base_class_methods__save_to_file__docstrings(self):
+        self.assertTrue(len(Base.save_to_file.__doc__) > 0)
+
+    def test_base_class_methods_create_docstrings(self):
+        self.assertTrue(len(Base.create.__doc__) > 0)
+
+    def test_base_class_methods_load_from_file_docstrings(self):
+        self.assertTrue(len(Base.load_from_file.__doc__) > 0)
+
+    def test_base_class_methods_save_to_file_csv_docstrings(self):
+        self.assertTrue(len(Base.save_to_file_csv.__doc__) > 0)
+
+    def test_base_class_methods_load_from_file_csv_docstrings(self):
+        self.assertTrue(len(Base.load_from_file_csv.__doc__) > 0)
+
+    def test_base_method_draw_docstrings(self):
+        self.assertTrue(len(Base.draw.__doc__) > 0)
+
+
+class TestClassId(unittest.TestCase):
 
     def setUp(self):
         Base.__nb_objects = 0
-
-    def test_docstrings(self):
-        """Test for  doc"""
-        self.assertTrue(len(Base.__doc__) > 0)
-        self.assertTrue(len(Base.__module__.__doc__) > 0)
 
     def test_private_attrs(self):
         with self.assertRaises(AttributeError):
@@ -185,7 +214,6 @@ class TestBase_to_json_string(unittest.TestCase):
 class TestBase_save_to_file(unittest.TestCase):
     """Unittests for testing save_to_file method of Base class."""
 
-    @classmethod
     def tearDown(self):
         """Delete any created files."""
         try:
@@ -370,7 +398,6 @@ class TestBase_create(unittest.TestCase):
 class TestBase_load_from_file(unittest.TestCase):
     """Unittests for testing load_from_file_method of Base class."""
 
-    @classmethod
     def tearDown(self):
         """Delete any created files."""
         try:
@@ -434,4 +461,4 @@ class TestBase_load_from_file(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)

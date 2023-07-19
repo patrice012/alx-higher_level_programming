@@ -11,10 +11,36 @@ from models.base import Base
 
 class TestBaseClassDocstrings(unittest.TestCase):
 
-    def test_docstrings(self):
+    def test_module_docstrings(self):
         """Test for  docs"""
         self.assertTrue(len(Rectangle.__doc__) > 0)
+
+    def test_rectangle_docstrings(self):
         self.assertTrue(len(Rectangle.__module__.__doc__) > 0)
+
+    def test_rectangle_class_methods__init__docstrings(self):
+        self.assertTrue(len(Rectangle.__init__.__doc__) > 0)
+
+    def test_rectangle_class_methods__str__docstrings(self):
+        self.assertTrue(len(Rectangle.__str__.__doc__) > 0)
+
+    def test_rectangle_class_methods__area__docstrings(self):
+        self.assertTrue(len(Rectangle.area.__doc__) > 0)
+    
+    def test_rectangle_class_methods__display__docstrings(self):
+        self.assertTrue(len(Rectangle.display.__doc__) > 0)
+    
+    def test_rectangle_class_methods__update__docstrings(self):
+        self.assertTrue(len(Rectangle.update.__doc__) > 0)
+    
+    def test_rectangle_class_methods__to_dictionary__docstrings(self):
+        self.assertTrue(len(Rectangle.to_dictionary.__doc__) > 0)
+    
+    def test_rectangle_class_getters_and_setters__docstrings(self):
+        self.assertTrue(len(Rectangle.x.__doc__) > 0)
+        self.assertTrue(len(Rectangle.y.__doc__) > 0)
+        self.assertTrue(len(Rectangle.width.__doc__) > 0)
+        self.assertTrue(len(Rectangle.height.__doc__) > 0)
 
 
 class TestRectangeBaseClass(unittest.TestCase):
@@ -97,44 +123,48 @@ class TestRectangleAttributsAccess(unittest.TestCase):
 
     # test assertRaises exception
     def test_invalid_width_value(self):
-        with self.assertRaisesRegex(TypeError, 'width must be an integer'):
+        with self.assertRaises(TypeError, msg='width must be an integer'):
             self.rect_1.width = 5.55
 
     def test_invalid_width_type(self):
-        with self.assertRaisesRegex(TypeError, 'width must be an integer'):
+        with self.assertRaises(TypeError, msg='width must be an integer'):
             self.rect_1.width = 'test'
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            self.rect_1.width = []
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            self.rect_1.width = {}
 
     def test_invalid_width_value_2(self):
-        with self.assertRaisesRegex(ValueError, 'width must be > 0'):
+        with self.assertRaises(ValueError, msg='width must be > 0'):
             self.rect_1.width = -5
             self.rect_1.width = 0
 
     def test_invalid_height_type(self):
-        with self.assertRaisesRegex(TypeError, 'height must be an integer'):
+        with self.assertRaises(TypeError, msg='height must be an integer'):
             self.rect_1.height = ['test', 55]
             self.rect_1.height = {'h':44}
 
     def test_invalid_height_value(self):
-        with self.assertRaisesRegex(ValueError, 'height must be > 0'):
+        with self.assertRaises(ValueError, msg='height must be > 0'):
             self.rect_1.height = 0
             self.rect_1.height = -11
 
     def test_invalid_x_type(self):
-        with self.assertRaisesRegex(TypeError, 'x must be an integer'):
+        with self.assertRaises(TypeError, msg='x must be an integer'):
             self.rect_1.x = 'hello'
             self.rect_1.x = 1, 8
 
     def test_invalid_x_value(self):
-        with self.assertRaisesRegex(ValueError, 'x must be >= 0'):
+        with self.assertRaises(ValueError, msg='x must be >= 0'):
             self.rect_1.x = -1
 
     def test_invalid_y_type(self):
-        with self.assertRaisesRegex(TypeError, 'y must be an integer'):
+        with self.assertRaises(TypeError, msg='y must be an integer'):
             self.rect_1.y = 5.44
             self.rect_1.y = {'h':0}
 
     def test_invalid_y_value(self):
-        with self.assertRaisesRegex(ValueError, 'y must be >= 0'):
+        with self.assertRaises(ValueError, msg='y must be >= 0'):
             self.rect_1.y = -11
 
 
@@ -176,38 +206,38 @@ class TestRectangleInstantiation(unittest.TestCase):
         self.assertEqual(rect_1.id, 14)
 
     def test_object_instantiation_width_invalid_value(self):
-        with self.assertRaisesRegex(ValueError, 'width must be > 0'):
+        with self.assertRaises(ValueError, msg='width must be > 0'):
             rect_2 = Rectangle(-2, 5)
 
     def test_object_instantiation_height_invalid_value(self):
-        with self.assertRaisesRegex(ValueError, 'height must be > 0'):
+        with self.assertRaises(ValueError, msg='height must be > 0'):
             rect_2 = Rectangle(2, -5)
 
     def test_object_instantiation_x_invalid_value(self):
-        with self.assertRaisesRegex(ValueError, 'x must be >= 0'):
+        with self.assertRaises(ValueError, msg='x must be >= 0'):
             rect_2 = Rectangle(2, 5, x=-5)
 
     def test_object_instantiation_y_invalid_value(self):
-        with self.assertRaisesRegex(ValueError, 'y must be >= 0'):
+        with self.assertRaises(ValueError, msg='y must be >= 0'):
             rect_2 = Rectangle(2, 5, y=-5)
 
     def test_object_instantiation_width_invalid_type(self):
-        with self.assertRaisesRegex(TypeError, 'width must be an integer'):
+        with self.assertRaises(TypeError, msg='width must be an integer'):
             rect_2 = Rectangle('55', 5)
             rect_2 = Rectangle(55.4, 5)
 
     def test_object_instantiation_height_invalid_type(self):
-        with self.assertRaisesRegex(TypeError, 'height must be an integer'):
+        with self.assertRaises(TypeError, msg='height must be an integer'):
             rect_2 = Rectangle(2, '88')
             rect_2 = Rectangle(2, [])
 
     def test_object_instantiation_x_invalid_type(self):
-        with self.assertRaisesRegex(TypeError, 'x must be an integer'):
+        with self.assertRaises(TypeError, msg='x must be an integer'):
             rect_2 = Rectangle(2, 5, x='5')
             rect_2 = Rectangle(2, 5, x=885.1)
 
     def test_object_instantiation_y_invalid_type(self):
-        with self.assertRaisesRegex(TypeError, 'y must be an integer'):
+        with self.assertRaises(TypeError, msg='y must be an integer'):
             rect_2 = Rectangle(2, 5, y='9')
             rect_2 = Rectangle(2, 5, y={})
 
@@ -216,27 +246,27 @@ class TestRectangle_order_of_initialization(unittest.TestCase):
     """Unittests for testing Rectangle order of attribute initialization."""
 
     def test_width_before_height(self):
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             Rectangle("invalid width", "invalid height")
 
     def test_width_before_x(self):
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             Rectangle("invalid width", 2, "invalid x")
 
     def test_width_before_y(self):
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             Rectangle("invalid width", 2, 3, "invalid y")
 
     def test_height_before_x(self):
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+        with self.assertRaises(TypeError, msg="height must be an integer"):
             Rectangle(1, "invalid height", "invalid x")
 
     def test_height_before_y(self):
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+        with self.assertRaises(TypeError, msg="height must be an integer"):
             Rectangle(1, "invalid height", 2, "invalid y")
 
     def test_x_before_y(self):
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+        with self.assertRaises(TypeError, msg="x must be an integer"):
             Rectangle(1, 2, "invalid x", "invalid y")
 
 
@@ -428,82 +458,82 @@ class TestRectangle_update_args(unittest.TestCase):
 
     def test_update_args_invalid_width_type(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             rect_1.update(89, "invalid")
 
     def test_update_args_width_zero(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+        with self.assertRaises(ValueError, msg="width must be > 0"):
             rect_1.update(89, 0)
 
     def test_update_args_width_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+        with self.assertRaises(ValueError, msg="width must be > 0"):
             rect_1.update(89, -5)
 
     def test_update_args_invalid_height_type(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+        with self.assertRaises(TypeError, msg="height must be an integer"):
             rect_1.update(89, 2, "invalid")
 
     def test_update_args_height_zero(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+        with self.assertRaises(ValueError, msg="height must be > 0"):
             rect_1.update(89, 1, 0)
 
     def test_update_args_height_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+        with self.assertRaises(ValueError, msg="height must be > 0"):
             rect_1.update(89, 1, -5)
 
     def test_update_args_invalid_x_type(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+        with self.assertRaises(TypeError, msg="x must be an integer"):
             rect_1.update(89, 2, 3, "invalid")
 
     def test_update_args_x_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+        with self.assertRaises(ValueError, msg="x must be >= 0"):
             rect_1.update(89, 1, 2, -6)
 
     def test_update_args_invalid_y(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+        with self.assertRaises(TypeError, msg="y must be an integer"):
             rect_1.update(89, 2, 3, 4, "invalid")
 
     def test_update_args_y_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+        with self.assertRaises(ValueError, msg="y must be >= 0"):
             rect_1.update(89, 1, 2, 3, -6)
 
     def test_update_args_width_before_height(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             rect_1.update(89, "invalid", "invalid")
 
     def test_update_args_width_before_x(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             rect_1.update(89, "invalid", 1, "invalid")
 
     def test_update_args_width_before_y(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             rect_1.update(89, "invalid", 1, 2, "invalid")
 
     def test_update_args_height_before_x(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+        with self.assertRaises(TypeError, msg="height must be an integer"):
             rect_1.update(89, 1, "invalid", "invalid")
 
     def test_update_args_height_before_y(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+        with self.assertRaises(TypeError, msg="height must be an integer"):
             rect_1.update(89, 1, "invalid", 1, "invalid")
 
     def test_update_args_x_before_y(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+        with self.assertRaises(TypeError, msg="x must be an integer"):
             rect_1.update(89, 1, 2, "invalid", "invalid")
 
 
@@ -558,52 +588,52 @@ class TestRectangle_update_kwargs(unittest.TestCase):
 
     def test_update_kwargs_invalid_width_type(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+        with self.assertRaises(TypeError, msg="width must be an integer"):
             rect_1.update(width="invalid")
 
     def test_update_kwargs_width_zero(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+        with self.assertRaises(ValueError, msg="width must be > 0"):
             rect_1.update(width=0)
 
     def test_update_kwargs_width_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+        with self.assertRaises(ValueError, msg="width must be > 0"):
             rect_1.update(width=-5)
 
     def test_update_kwargs_invalid_height_type(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+        with self.assertRaises(TypeError, msg="height must be an integer"):
             rect_1.update(height="invalid")
 
     def test_update_kwargs_height_zero(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+        with self.assertRaises(ValueError, msg="height must be > 0"):
             rect_1.update(height=0)
 
     def test_update_kwargs_height_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+        with self.assertRaises(ValueError, msg="height must be > 0"):
             rect_1.update(height=-5)
 
     def test_update_kwargs_inavlid_x_type(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+        with self.assertRaises(TypeError, msg="x must be an integer"):
             rect_1.update(x="invalid")
 
     def test_update_kwargs_x_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+        with self.assertRaises(ValueError, msg="x must be >= 0"):
             rect_1.update(x=-5)
 
     def test_update_kwargs_invalid_y_type(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+        with self.assertRaises(TypeError, msg="y must be an integer"):
             rect_1.update(y="invalid")
 
     def test_update_kwargs_y_negative(self):
         rect_1 = Rectangle(10, 10, 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+        with self.assertRaises(ValueError, msg="y must be >= 0"):
             rect_1.update(y=-5)
 
     def test_update_args_and_kwargs(self):

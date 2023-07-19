@@ -18,9 +18,20 @@ class TestDocstrings(unittest.TestCase):
     def test_square_class_docstrings(self):
         self.assertTrue(len(Square.__doc__) > 0)
 
-    def test_square_class_methods_docstrings(self):
+    def test_square_class_methods___init__docstrings(self):
         self.assertTrue(len(Square.__init__.__doc__) > 0)
+
+    def test_square_class_methods___str__docstrings(self):
         self.assertTrue(len(Square.__str__.__doc__) > 0)
+
+    def test_square_class_methods__update__docstrings(self):
+        self.assertTrue(len(Square.update.__doc__) > 0)
+
+    def test_square_class_methods__to_dictionary__docstrings(self):
+        self.assertTrue(len(Square.to_dictionary.__doc__) > 0)
+
+    def test_square_class_methods__size__docstrings(self):
+        self.assertTrue(len(Square.size.__doc__) > 0)
 
 
 class TestSquareBaseClass(unittest.TestCase):
@@ -117,30 +128,30 @@ class TestAttrsExecptions(unittest.TestCase):
         self.sq = Square(1)
 
     def test_invalid_size_value(self):
-        with self.assertRaisesRegex(TypeError, 'width must be an integer'):
+        with self.assertRaises(TypeError, msg='width must be an integer'):
             self.sq.size = 5.55
             self.sq.size = 'hello'
 
     def test_invalid_size_type(self):
-        with self.assertRaisesRegex(ValueError, 'width must be > 0'):
+        with self.assertRaises(ValueError, msg='width must be > 0'):
             self.sq.size = -5
 
     def test_invalid_x_value(self):
-        with self.assertRaisesRegex(TypeError, 'x must be an integer'):
+        with self.assertRaises(TypeError, msg='x must be an integer'):
             self.sq.x = 5.55
             self.sq.x = 'hello'
 
     def test_invalid_x_type(self):
-        with self.assertRaisesRegex(ValueError, 'x must be >= 0'):
+        with self.assertRaises(ValueError, msg='x must be >= 0'):
             self.sq.x = -5
 
     def test_invalid_y_value(self):
-        with self.assertRaisesRegex(TypeError, 'y must be an integer'):
+        with self.assertRaises(TypeError, msg='y must be an integer'):
             self.sq.y = 5.55
             self.sq.y = 'hello'
 
     def test_invalid_y_type(self):
-        with self.assertRaisesRegex(ValueError, 'y must be >= 0'):
+        with self.assertRaises(ValueError, msg='y must be >= 0'):
             self.sq.y = -5
 
 
