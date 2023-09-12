@@ -2,15 +2,9 @@
 
 const list = require('./100-data').list;
 
-function print (list) {
-  console.log(list);
-}
+const arr = [];
+list.map((item, index) => arr.push(item * index));
 
-function factorIndex (list) {
-  return list.map((element, index) => element * index);
-}
+console.log(list);
+console.log(arr);
 
-const arr = factorIndex(list);
-
-print(arr);
-print(list);
