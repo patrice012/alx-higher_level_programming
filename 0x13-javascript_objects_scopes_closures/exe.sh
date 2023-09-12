@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# check code style
+# check code style in the current directory
 semistandard .
 
 # auto fix some error
