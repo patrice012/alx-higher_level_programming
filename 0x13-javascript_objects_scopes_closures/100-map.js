@@ -7,4 +7,3 @@ list.map((item, index) => arr.push(item * index));
 
 console.log(list);
 console.log(arr);
-
