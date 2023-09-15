@@ -73,13 +73,11 @@ def filter_user_data(av):
     cur, db = connect_db(host=host, port=port, user=user, passwd=passwd, db=db)
 
     # execute raw sql
-    query = "SELECT * FROM states WHERE BINARY \
-        name='{:s}' ORDER BY id ASC".format(
-        search_param
-    )
+    query = """SELECT * FROM states WHERE BINARY \
+        name=%s ORDER BY id ASC"""
     states = []
     try:
-        cur.execute(query)
+        cur.execute(query, (search_param,))
         states = cur.fetchall()
     except MySQLdb.Error as e:
         # print(e)
