@@ -59,10 +59,11 @@ def get_all_data(av):
     db = av[2]
 
     # make connection to database
-    cur, db = connect_db(host, port, user=user, passwd=passwd, db=db)
+    cur, db = connect_db(host=host, port=port, user=user, passwd=passwd, db=db)
 
     # execute raw sql
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    query = "SELECT * FROM states ORDER BY id ASC"
+    cur.execute(query)
     states = cur.fetchall()
     close_connection(cur, db)
     return states

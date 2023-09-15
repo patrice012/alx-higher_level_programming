@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
 """
-Module contains script that lists all states with a
-name starting with N (upper N) from the database hbtn_0e_0_usa
+Module contains script that takes in an argument
+and displays all values in the states table of
+hbtn_0e_0_usa where name matches the argument.
 1-Create database if not exist
 2-populated db
 3-run script cat 0-select_states.sql | mysql -uroot -p
-4-run ./1-filter_states.py root root hbtn_0e_0_usa
+4-run ./2-my_filter_states.py root root hbtn_0e_0_usa 'Arizona'
 """
 
 
@@ -48,10 +49,10 @@ def print_data(datas):
         print(data)
 
 
-def filter_data(av):
+def filter_user_data(av):
     """
-    Get all states with a name starting with N
-    (upper N) from the database  using MySQLdb connector
+    Get all states with a name matches the argument
+    from the database  using MySQLdb connector
 
     Args:
         av: list of arguments
@@ -62,12 +63,16 @@ def filter_data(av):
     user = av[0]
     passwd = av[1]
     db = av[2]
+    state_name = av[3]
 
     # make connection to database
     cur, db = connect_db(host=host, port=port, user=user, passwd=passwd, db=db)
 
     # execute raw sql
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+    query = "SELECT * FROM states WHERE BINARY \
+        name='{:s}' ORDER BY id ASC".format(
+        state_name
+    )
     cur.execute(query)
     states = cur.fetchall()
     close_connection(cur, db)
@@ -79,5 +84,5 @@ if __name__ == "__main__":
     from sys import argv
 
     av = argv[1:]
-    data = filter_data(av)
+    data = filter_user_data(av)
     print_data(data)
