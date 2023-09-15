@@ -9,7 +9,7 @@ from the database hbtn_0e_0_usa
 """
 
 
-def connect_db(host, port, user, passwd, db, **kwargs):
+def connect_db(host, port, user, passwd, db_name, **kwargs):
     """
     Connect MySQLdb to a Database
 
@@ -23,8 +23,9 @@ def connect_db(host, port, user, passwd, db, **kwargs):
     Return:
         cur(cursor): cursor object
     """
+    arg = (host, user, passwd, db_name)
     try:
-        db = MySQLdb.connect(host, port=port, user=user, passwd=passwd, db=db)
+        db = MySQLdb.connect(*arg, port=port)
     except MySQLdb.Error as e:
         # print(e)
         pass
@@ -63,7 +64,7 @@ def get_all_data(av):
     db = av[2]
 
     # make connection to database
-    cur, db = connect_db(host=host, port=port, user=user, passwd=passwd, db=db)
+    cur, db = connect_db(host, port, user=user, passwd=passwd, db_name=db)
 
     # execute raw sql
     query = "SELECT * FROM states ORDER BY id ASC"

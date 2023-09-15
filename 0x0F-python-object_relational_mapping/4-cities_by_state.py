@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 
 """
-Module contains script that lists all states with a
-name starting with N (upper N) from the database hbtn_0e_0_usa
-1-Create database if not exist
-2-populated db
-3-run script cat 0-select_states.sql | mysql -uroot -p
-4-run ./1-filter_states.py root root hbtn_0e_0_usa
+Module contains script that takes in an argument
+and displays all values in the states table of
+hbtn_0e_4_usa where name matches the argument.
 """
 
 
@@ -53,10 +50,10 @@ def print_data(datas):
         print(data)
 
 
-def filter_data(av):
+def get_cities(av):
     """
-    Get all states with a name starting with N
-    (upper N) from the database  using MySQLdb connector
+    Get all states with a name matches the argument
+    from the database  using MySQLdb connector
 
     Args:
         av: list of arguments
@@ -72,13 +69,26 @@ def filter_data(av):
     cur, db = connect_db(host, port, user=user, passwd=passwd, db_name=db)
 
     # execute raw sql
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+    # """
+    # SELECT cities.id, cities.name, states.name
+    # FROM cities INNER JOIN states
+    # ON cities.state_id = states.id """
+    rows = "cities.id, cities.name, states.name"
+    tables = "cities, states "
+    condition = "cities.state_id = states.id"
+    order = "cities.id"
+    query = f"""
+    SELECT {rows}
+    FROM {tables}
+    WHERE {condition}
+    ORDER BY {order}
+    """
     states = []
     try:
         cur.execute(query)
         states = cur.fetchall()
     except MySQLdb.Error as e:
-        # print(e)
+        print(e)
         pass
     close_connection(cur, db)
     return states
@@ -89,5 +99,5 @@ if __name__ == "__main__":
     from sys import argv
 
     av = argv[1:]
-    data = filter_data(av)
+    data = get_cities(av)
     print_data(data)
