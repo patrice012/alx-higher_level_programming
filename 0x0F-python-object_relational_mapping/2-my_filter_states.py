@@ -25,7 +25,11 @@ def connect_db(host, port, user, passwd, db, **kwargs):
     Return:
         cur(cursor): cursor object
     """
-    db = MySQLdb.connect(host=host, port=port, user=user, passwd=passwd, db=db)
+    try:
+        db = MySQLdb.connect(host, port=port, user=user, passwd=passwd, db=db)
+    except MySQLdb.Error as e:
+        # print(e)
+        pass
 
     # create cursor object
     cur = db.cursor()
@@ -73,8 +77,13 @@ def filter_user_data(av):
         name='{:s}' ORDER BY id ASC".format(
         state_name
     )
-    cur.execute(query)
-    states = cur.fetchall()
+    states = []
+    try:
+        cur.execute(query)
+        states = cur.fetchall()
+    except MySQLdb.Error as e:
+        # print(e)
+        pass
     close_connection(cur, db)
     return states
 
