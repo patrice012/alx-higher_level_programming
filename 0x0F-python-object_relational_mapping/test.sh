@@ -38,6 +38,11 @@ echo ""
 echo "========== Test task 9 ==========="
 sudo ./9-model_state_filter_a.py root root hbtn_0e_6_usa
 
+echo ""
+echo "========== Test task 10 ==========="
+sudo ./10-model_state_my_get.py root root hbtn_0e_6_usa Illinois
+sudo ./10-model_state_my_get.py root root hbtn_0e_6_usa Texas
+
 
 
 
