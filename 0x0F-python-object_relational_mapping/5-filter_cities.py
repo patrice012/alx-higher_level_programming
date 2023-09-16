@@ -71,9 +71,9 @@ def get_cities(av):
     # execute raw sql
     # """
     # SELECT cities.name FROM states
-    #INNER JOIN cities ON states.id = cities.state_id
-    #WHERE states.name = %s
-    #ORDER BY cities.id ASC
+    # INNER JOIN cities ON states.id = cities.state_id
+    # WHERE states.name = %s
+    # ORDER BY cities.id ASC
     # """
     rows = "cities.name"
     tables = "cities"
