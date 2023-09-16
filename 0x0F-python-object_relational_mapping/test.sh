@@ -50,9 +50,18 @@ sudo ./11-model_state_insert.py root root hbtn_0e_6_usa
 sudo ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
 
 echo ""
-echo "========== Test task 11 ==========="
+echo "========== Test task 12 ==========="
 sudo ./12-model_state_update_id_2.py root root hbtn_0e_6_usa
 sudo ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
+
+echo ""
+echo "========== Test task 13 ==========="
+sudo ./13-model_state_delete_a.py root root hbtn_0e_6_usa 
+sudo ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
+
+echo ""
+echo "========== Test task 14 ==========="
+sudo ./14-model_city_fetch_by_state.py root root hbtn_0e_14_usa
 
 
 

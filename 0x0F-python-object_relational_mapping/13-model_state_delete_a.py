@@ -69,22 +69,28 @@ def delete_states(av):
     session = connect_db(host, port, user, passwd, db_name=db, **kwargs)
     # delete data
     """
-    synchronize_session=fetch option: 'fetch' - Retrieves the primary key identity of affected rows by either performing a SELECT before the UPDATE or DELETE, or by using RETURNING if the database supports it, so that in-memory objects which are affected by the operation can be refreshed with new values (updates) or expunged from the Session (deletes)
-    Read more: https://docs.sqlalchemy.org/en/14/orm/session_basics.html#selecting-a-synchronization-strategy
+    synchronize_session=fetch option:\
+    'fetch' - Retrieves the primary key identity of affected rows by either\
+    performing a SELECT before the UPDATE or DELETE, or by using RETURNING if\
+    the database supports it, so that in-memory objects which are affected by\
+    the operation can be refreshed with new values (updates) or expunged from\
+    the Session (deletes)\
+    Read more: https://docs.sqlalchemy.org/en/14/orm/session_basics.\
+    html#selecting-a-synchronization-strategy
     """
     try:
         states = (
-            session.query(State)\
-            .filter(State.name.ilike("%a%"))\
-            .delete(synchronize_session='fetch')
+            session.query(State)
+            .filter(State.name.ilike("%a%"))
+            .delete(synchronize_session="fetch")
         )
         # commit changes
         session.commit()
-    except:
+    except TypeError as e:
         session.rollback()
         raise
     finally:
-        session.close() # optional, depends on use case
+        session.close()  # optional, depends on use case
 
 
 if __name__ == "__main__":
