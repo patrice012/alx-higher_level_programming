@@ -26,6 +26,10 @@ echo ""
 echo "========== Test task 6 ==========="
 sudo ./6-model_state.py root root hbtn_0e_6_usa
 
+echo ""
+echo "========== Test task 7 ==========="
+sudo ./7-model_state_fetch_all.py root root hbtn_0e_6_usa
+
 
 
 

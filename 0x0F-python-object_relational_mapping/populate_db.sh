@@ -13,3 +13,7 @@ cat 4-cities_by_state.sql | mysql -uroot -p
 echo ""
 echo "======= migrate hbtn_0e_6_usa ======="
 cat 6-model_state.sql | sudo mysql -uroot -p
+
+echo ""
+echo "======= migrate hbtn_0e_6_usa ======="
+cat 7-model_state_fetch_all.sql | sudo mysql -uroot -p hbtn_0e_6_usa
