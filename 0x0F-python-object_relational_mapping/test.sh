@@ -17,6 +17,10 @@ sudo ./3-my_safe_filter_states.py root root hbtn_0e_0_usa 'Arizona'
 echo ""
 echo "========== Test task 4 ==========="
 sudo ./4-cities_by_state.py root root hbtn_0e_4_usa
+echo ""
+echo "========== Test task 5 ==========="
+sudo ./5-filter_cities.py root root hbtn_0e_4_usa Texas
+sudo ./5-filter_cities.py root root hbtn_0e_4_usa Hawaii
 
 
 echo "~~~~~~~~~~~~ Test ending ~~~~~~~~~~~~~~~~~~"

@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
 """
-Module contains script that lists all
-cities from the database hbtn_0e_4_usa
+Module contains script that takes in the name
+of a state as an argument and lists all
+cities of that state, using the database hbtn_0e_4_usa
 """
 
 
@@ -45,8 +46,7 @@ def print_data(datas):
     """
     Helper function used to print data
     """
-    for data in datas:
-        print(data)
+    print(", ".join(datas))
 
 
 def get_cities(av):
@@ -63,18 +63,21 @@ def get_cities(av):
     user = av[0]
     passwd = av[1]
     db = av[2]
+    search_params = av[3]
 
-    # make connection to database
+    # connect to database
     cur, db = connect_db(host, port, user=user, passwd=passwd, db_name=db)
 
     # execute raw sql
     # """
-    # SELECT cities.id, cities.name, states.name
-    # FROM cities INNER JOIN states
-    # ON cities.state_id = states.id """
-    rows = "cities.id, cities.name, states.name"
-    tables = "cities, states "
-    condition = "cities.state_id = states.id"
+    # SELECT cities.name FROM states
+    #INNER JOIN cities ON states.id = cities.state_id
+    #WHERE states.name = %s
+    #ORDER BY cities.id ASC
+    # """
+    rows = "cities.name"
+    tables = "cities"
+    condition = f"cities.state_id = (SELECT id FROM states WHERE name = %s)"
     order = "cities.id"
     query = f"""
     SELECT {rows}
@@ -84,13 +87,13 @@ def get_cities(av):
     """
     states = []
     try:
-        cur.execute(query)
+        cur.execute(query, (search_params,))
         states = cur.fetchall()
     except MySQLdb.Error as e:
         print(e)
         pass
     close_connection(cur, db)
-    return states
+    return [state[0] for state in states]
 
 
 if __name__ == "__main__":
