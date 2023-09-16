@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 """
-Module contains script that
-lists all State objects from the database hbtn_0e_6_usa
+Module contains script that prints
+the first State object from the database hbtn_0e_6_usa
 """
 
 
@@ -44,17 +44,20 @@ def connect_db(host, port, username, passwd, db_name, **kwargs):
     return session
 
 
-def print_data(datas):
+def print_data(data):
     """
     Helper function used to print data
     """
-    for data in datas:
+    if data is None:
+        print("Nothing")
+    else:
         print("{}: {}".format(data.id, data.name))
 
 
-def get_states(av):
+def get_state(av):
     """
-    Get all states in the database  using sqlalchemy ORM
+    Get the  first state in
+    the database  using sqlalchemy ORM
 
     Args:
         av: list of arguments
@@ -72,7 +75,7 @@ def get_states(av):
     # connect to database
     session = connect_db(host, port, user, passwd, db_name=db, **kwargs)
     # fetch data
-    states = session.query(State).order_by(State.id)
+    states = session.query(State).order_by(State.id).first()
     return states
 
 
@@ -80,5 +83,5 @@ if __name__ == "__main__":
     from sys import argv
 
     av = argv[1:]
-    data = get_states(av)
+    data = get_state(av)
     print_data(data)
