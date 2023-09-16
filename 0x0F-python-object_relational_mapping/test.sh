@@ -22,5 +22,12 @@ echo "========== Test task 5 ==========="
 sudo ./5-filter_cities.py root root hbtn_0e_4_usa Texas
 sudo ./5-filter_cities.py root root hbtn_0e_4_usa Hawaii
 
+echo ""
+echo "========== Test task 6 ==========="
+sudo ./6-model_state.py root root hbtn_0e_6_usa
+
+
+
+
 
 echo "~~~~~~~~~~~~ Test ending ~~~~~~~~~~~~~~~~~~"
