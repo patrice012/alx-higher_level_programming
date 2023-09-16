@@ -46,7 +46,14 @@ sudo ./10-model_state_my_get.py root root hbtn_0e_6_usa Texas
 
 echo ""
 echo "========== Test task 11 ==========="
+sudo ./11-model_state_insert.py root root hbtn_0e_6_usa 
 sudo ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
+
+echo ""
+echo "========== Test task 11 ==========="
+sudo ./12-model_state_update_id_2.py root root hbtn_0e_6_usa
+sudo ./7-model_state_fetch_all.py root root hbtn_0e_6_usa 
+
 
 
 

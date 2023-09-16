@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 echo "select mode: 1 to enable debug, any onther number for not";
-read -p ">>> " mode;
+read -rp ">>> " mode;
 
-if [ $mode -eq 1 ]
+if [ "$mode" -eq 1 ]
 then
     debug=true;
 else
@@ -14,6 +14,7 @@ find . -type f -name "*.py" -exec black  {} \;
 
 # check for code style
 find . -type f -name "*.py" -exec pycodestyle {} \;
+find . -type f -name "*.sh" -exec shellcheck {} \;
 
 # make executables
 find . -type f -name "*.py" -exec chmod +x {} \;
