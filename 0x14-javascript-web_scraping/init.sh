@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-find . -type f -name "*.js" -exec black {} \;
+find . -type f -name "*.js" -exec chmod +x {} \;
 
 semistandard .
 
